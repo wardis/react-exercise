@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { fetchApplications } from './api/fetch-applications'
 import { Application } from './types/application.type'
+import Navigation from './components/navigation'
+import Filters from './components/filters'
+import ApplicationList from './components/application-list'
 
 function App() {
   const [applications, setApplications] = useState<Application[]>([])
@@ -24,16 +27,14 @@ function App() {
   }
 
   return (
-    <>
-      <h1>React Coding Exercise</h1>
-      <ul>
-        {applications.map((item) => (
-          <li key={item.id}>
-            {item.name} ${item.spend}
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="main">
+      <div className="sidenav">
+        <Navigation />
+        <hr />
+        <Filters />
+      </div>
+      <ApplicationList applications={applications} />
+    </div>
   )
 }
 

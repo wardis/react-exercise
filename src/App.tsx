@@ -5,9 +5,23 @@ import { Application } from './types/application.type'
 
 function App() {
   const [applications, setApplications] = useState<Application[]>([])
+  const [error, setError] = useState<string | null>(null)
+
   useEffect(() => {
-    fetchApplications().then((data) => setApplications(data))
+    async function fetchData() {
+      try {
+        const data = await fetchApplications()
+        setApplications(data)
+      } catch (error) {
+        setError((error as Error).message)
+      }
+    }
+    fetchData()
   }, [])
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
 
   return (
     <>

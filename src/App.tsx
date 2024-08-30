@@ -30,10 +30,11 @@ function App() {
     <div className="main">
       <div className="sidenav">
         <Navigation />
-        <hr />
         <Filters />
       </div>
-      <ApplicationList applications={applications} />
+      <div className="container">
+        <ApplicationList applications={applications} />
+      </div>
     </div>
   )
 }

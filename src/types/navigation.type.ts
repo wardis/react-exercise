@@ -1,4 +1,4 @@
-export type NavigationItem {
-  name: string;
+export type NavigationItem = {
+  name: string
   nodes?: NavigationItem[]
 }

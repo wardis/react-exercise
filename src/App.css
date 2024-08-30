@@ -22,19 +22,38 @@ body {
   padding-block: 1rem;
 }
 
-.navigation-item {
-  cursor: pointer;
-  margin-block: 10px;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-
-  :hover {
-    text-decoration: underline;
+.navigation {
+  .title {
+    display: flex;
+    justify-content: space-between;
   }
-}
-.navigation .list {
-  padding-left: 1rem;
+
+  .list {
+    padding-left: 1rem;
+  }
+
+  .navigation-item {
+    cursor: pointer;
+    padding-block: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    &.active .name {
+      text-decoration: underline;
+    }
+
+    & > span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      border-radius: 4px;
+    }
+    & > span:hover {
+      background: lightgray;
+    }
+  }
 }
 
 .filters > .title {

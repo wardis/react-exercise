@@ -34,6 +34,24 @@ body {
   }
 }
 
+.filters > .title {
+  margin-bottom: 1rem;
+}
+
+.spending-filter {
+  .label {
+    color: darkgray;
+  }
+  input {
+    width: 100%;
+  }
+  .values {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .container {
   padding: 1rem;
   width: 100%;

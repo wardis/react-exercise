@@ -11,7 +11,7 @@ export default function Navigation({
       <p>Navigation</p>
       <div>
         {navigationItems.map((node) => (
-          <NavigationItem node={node} />
+          <NavigationItem node={node} key={node.name} />
         ))}
       </div>
     </div>

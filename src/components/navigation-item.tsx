@@ -5,7 +5,7 @@ export default function NavigationItem({ node }: { node: NavigationItemType }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div key={node.name}>
+    <div>
       <div
         className="navigation-item"
         onClick={() => node.nodes?.length && setIsOpen(!isOpen)}

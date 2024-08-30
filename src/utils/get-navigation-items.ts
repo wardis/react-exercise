@@ -50,6 +50,5 @@ export const getNavigationItems = (data: Application[]) => {
     })
   }
 
-  console.log(grouped, nodes)
   return nodes
 }

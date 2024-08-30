@@ -7,6 +7,7 @@ import Filters from './components/filters'
 import ApplicationList from './components/application-list'
 import { MAX_SPENDING_VALUE } from './consts/max-spending'
 import { getNavigationItems } from './utils/get-navigation-items'
+import { useNavigation } from './contexts/navigation'
 
 /**
  * In Navigation:
@@ -19,13 +20,17 @@ function App() {
   const [applications, setApplications] = useState<Application[]>([])
   const [error, setError] = useState<string | null>(null)
   const [spending, setSpending] = useState(MAX_SPENDING_VALUE)
-  const [bcap, setBcap] = useState('')
+  const { selected: selectedBcap, setSelected: setSelectedBcap } =
+    useNavigation()
 
   const navigationItems = getNavigationItems(applications)
 
   const applicationsFilteredByBcap = applications.filter(
-    ({ BCAP1, BCAP2, BCAP3 }) => !bcap || [BCAP1, BCAP2, BCAP3].includes(bcap)
+    ({ BCAP1, BCAP2, BCAP3 }) =>
+      !selectedBcap || [BCAP1, BCAP2, BCAP3].includes(selectedBcap)
   )
+
+  // I assumed we want to update the filter with the currently selected business capability
   const spendings = applicationsFilteredByBcap.map(
     (application) => application.spend
   )
@@ -47,10 +52,10 @@ function App() {
 
   useEffect(() => {
     applications.length && setSpending(Math.max(...spendings))
-  }, [bcap])
+  }, [selectedBcap])
 
   function handleReset() {
-    setBcap('')
+    setSelectedBcap('')
     setSpending(MAX_SPENDING_VALUE)
   }
 
@@ -61,12 +66,7 @@ function App() {
   return (
     <div className="main">
       <div className="sidenav">
-        <Navigation
-          navigationItems={navigationItems}
-          setBcap={setBcap}
-          bcap={bcap}
-          reset={handleReset}
-        />
+        <Navigation navigationItems={navigationItems} reset={handleReset} />
         <Filters
           value={spending}
           setValue={setSpending}

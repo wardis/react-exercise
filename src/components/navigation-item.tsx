@@ -1,17 +1,11 @@
-import { SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import { NavigationItem as NavigationItemType } from '../types/navigation.type'
+import { useNavigation } from '../contexts/navigation'
 
-export default function NavigationItem({
-  node,
-  bcap,
-  setBcap,
-}: {
-  node: NavigationItemType
-  bcap: string
-  setBcap: React.Dispatch<SetStateAction<string>>
-}) {
+export default function NavigationItem({ node }: { node: NavigationItemType }) {
   const [isOpen, setIsOpen] = useState(false)
-  const isActive = bcap === node.name
+  const { selected, setSelected } = useNavigation()
+  const isActive = selected === node.name
 
   return (
     <div>
@@ -23,7 +17,7 @@ export default function NavigationItem({
         ) : (
           <span />
         )}
-        <div className="name" onClick={() => setBcap(node.name)}>
+        <div className="name" onClick={() => setSelected(node.name)}>
           {node.name}
         </div>
       </div>
@@ -32,12 +26,7 @@ export default function NavigationItem({
           node.nodes.length > 0 &&
           isOpen &&
           node.nodes.map((node) => (
-            <NavigationItem
-              node={node}
-              key={node.name}
-              setBcap={setBcap}
-              bcap={bcap}
-            />
+            <NavigationItem node={node} key={node.name} />
           ))}
       </div>
     </div>

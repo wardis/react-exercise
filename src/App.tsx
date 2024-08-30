@@ -12,14 +12,17 @@ function App() {
   const [applications, setApplications] = useState<Application[]>([])
   const [error, setError] = useState<string | null>(null)
   const [spending, setSpending] = useState(MAX_SPENDING_VALUE)
+  const [bcap, setBcap] = useState('')
 
   const spendings = applications.map((application) => application.spend)
   const minSpend = Math.min(...spendings)
   const maxSpend = Math.max(...spendings)
 
-  const filteredApplications = applications.filter(
-    (application) => application.spend <= spending
-  )
+  const filteredApplications = applications
+    .filter(
+      ({ BCAP1, BCAP2, BCAP3 }) => !bcap || [BCAP1, BCAP2, BCAP3].includes(bcap)
+    )
+    .filter((application) => application.spend <= spending)
 
   useEffect(() => {
     async function fetchData() {
@@ -40,7 +43,7 @@ function App() {
   return (
     <div className="main">
       <div className="sidenav">
-        <Navigation navigationItems={navigationItems} />
+        <Navigation navigationItems={navigationItems} setBcap={setBcap} />
         <Filters
           value={spending}
           setValue={setSpending}

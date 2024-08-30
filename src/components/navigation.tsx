@@ -3,6 +3,7 @@ import NavigationItem from './navigation-item'
 
 export default function Navigation({
   navigationItems,
+  setBcap,
 }: {
   navigationItems: NavigationItemType[]
 }) {
@@ -11,7 +12,7 @@ export default function Navigation({
       <p>Navigation</p>
       <div>
         {navigationItems.map((node) => (
-          <NavigationItem node={node} key={node.name} />
+          <NavigationItem node={node} key={node.name} setBcap={setBcap} />
         ))}
       </div>
     </div>

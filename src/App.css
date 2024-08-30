@@ -33,6 +33,9 @@ body {
     text-decoration: underline;
   }
 }
+.navigation .list {
+  padding-left: 1rem;
+}
 
 .filters > .title {
   margin-bottom: 1rem;

@@ -6,7 +6,7 @@ import Navigation from './components/navigation'
 import Filters from './components/filters'
 import ApplicationList from './components/application-list'
 import { MAX_SPENDING_VALUE } from './consts/max-spending'
-import { navigationItems } from './consts/navigation-items'
+import { getNavigationItems } from './utils/get-navigation-items'
 
 /**
  * In Navigation:
@@ -20,6 +20,8 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [spending, setSpending] = useState(MAX_SPENDING_VALUE)
   const [bcap, setBcap] = useState('')
+
+  const navigationItems = getNavigationItems(applications)
 
   const applicationsFilteredByBcap = applications.filter(
     ({ BCAP1, BCAP2, BCAP3 }) => !bcap || [BCAP1, BCAP2, BCAP3].includes(bcap)

@@ -1,4 +1,4 @@
-// Harcoded values for now.
+// TODO: remove this file when I finish get-navigation-items
 export const navigationItems = [
   {
     name: 'Business Capability 1',

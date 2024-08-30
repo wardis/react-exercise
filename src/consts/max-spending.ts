@@ -1,0 +1,1 @@
+export const MAX_SPENDING_VALUE = 99999
